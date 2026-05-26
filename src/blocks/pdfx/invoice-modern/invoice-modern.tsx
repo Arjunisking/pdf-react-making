@@ -14,3 +14,4 @@ import { Text } from "../../../components/pdfx/text/pdfx-text";
 import { Document, Page, StyleSheet, View } from "@react-pdf/renderer";
 import type { InvoiceModernData } from "./invoice-modern.types";
 
+
