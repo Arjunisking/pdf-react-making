@@ -1,7 +1,7 @@
 import { Text as PDFText, View } from '@react-pdf/renderer';
 import type { Style } from '@react-pdf/types';
 import { Children, type ReactElement, type ReactNode, cloneElement, isValidElement } from 'react';
-import { usePdfxTheme, useSafeMemo } from '..\..\..\lib\pdfx-theme-context';
+import { usePdfxTheme, useSafeMemo } from '../../../lib/pdfx-theme-context';
 import { createTableStyles } from './pdfx-table.styles';
 import type {
   TableCellProps,
@@ -233,6 +233,7 @@ export function TableCell({
 
   return <View style={styleArray}>{content}</View>;
 }
+
 
 
 
