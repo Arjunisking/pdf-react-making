@@ -264,7 +264,7 @@ function Bullet({ children }: WithChildren) {
 
 function NumberStep({ number, title, text, style }: CardProps) {
   return (
-    <View style={[styles.stepCard, style]} wrap={false}>
+    <View style={[styles.stepCard, style]}>
       <View style={styles.stepNumber}>
         <PDFText style={styles.stepNumberText}>{number}</PDFText>
       </View>
@@ -278,7 +278,7 @@ function NumberStep({ number, title, text, style }: CardProps) {
 
 function InfoCard({ title, text, number, style }: CardProps) {
   return (
-    <View style={[styles.infoCard, style]} wrap={false}>
+    <View style={[styles.infoCard, style]}>
       {number ? <PDFText style={styles.cardNumber}>{number}</PDFText> : null}
       <PDFText style={styles.cardTitle}>{title}</PDFText>
       <PDFText style={styles.cardText}>{text}</PDFText>
@@ -288,7 +288,7 @@ function InfoCard({ title, text, number, style }: CardProps) {
 
 function ServiceCard({ title, text, number, style }: CardProps) {
   return (
-    <View style={[styles.serviceCard, style]} wrap={false}>
+    <View style={[styles.serviceCard, style]}>
       <View style={styles.serviceTopRow}>
         <View style={styles.serviceIcon}>
           <PDFText style={styles.serviceIconText}>{number}</PDFText>
@@ -302,7 +302,7 @@ function ServiceCard({ title, text, number, style }: CardProps) {
 
 function ClientPill({ label }: { label: string }) {
   return (
-    <View style={styles.clientPill} wrap={false}>
+    <View style={styles.clientPill}>
       <PDFText style={styles.clientPillText}>{label}</PDFText>
     </View>
   );
@@ -318,7 +318,7 @@ function ContactRow({
   src?: string;
 }) {
   return (
-    <View style={styles.contactRow} wrap={false}>
+    <View style={styles.contactRow}>
       <PDFText style={styles.contactLabel}>{label}</PDFText>
       {src ? (
         <Link src={src} style={styles.contactLink}>
@@ -333,7 +333,7 @@ function ContactRow({
 
 function HighlightBox({ children, style }: WithChildren) {
   return (
-    <View style={[styles.highlightBox, style]} wrap={false}>
+    <View style={[styles.highlightBox, style]}>
       <DecorativeLeaf />
       {children}
     </View>
@@ -459,7 +459,7 @@ export default function CurrentDocument() {
             </PDFText>
           </HighlightBox>
 
-          <View style={styles.visionBox} wrap={false}>
+          <View style={styles.visionBox}>
             <PDFText style={styles.visionLabel}>Our Vision</PDFText>
             <PDFText style={styles.visionText}>
               To become India’s trusted eco-tech platform for premium green spaces, sustainable interiors, rooftop gardens, and plant-based lifestyle solutions.
@@ -481,14 +481,14 @@ export default function CurrentDocument() {
 
         <View style={styles.problemGrid}>
           {problemPoints.map((point) => (
-            <View key={point} style={styles.problemCard} wrap={false}>
+            <View key={point} style={styles.problemCard}>
               <View style={styles.problemDot} />
               <PDFText style={styles.problemText}>{point}</PDFText>
             </View>
           ))}
         </View>
 
-        <View style={styles.solutionPanel} wrap={false}>
+        <View style={styles.solutionPanel}>
           <View style={styles.solutionLeft}>
             <PDFText style={styles.solutionLabel}>Our Solution</PDFText>
             <PDFText style={styles.solutionTitle}>
@@ -547,7 +547,7 @@ export default function CurrentDocument() {
           ))}
         </View>
 
-        <View style={styles.serviceFeature} wrap={false}>
+        <View style={styles.serviceFeature}>
           <View style={styles.serviceFeatureTextBlock}>
             <PDFText style={styles.serviceFeatureLabel}>Built for modern Indian spaces</PDFText>
             <PDFText style={styles.serviceFeatureTitle}>
@@ -686,7 +686,7 @@ export default function CurrentDocument() {
             </View>
           </View>
 
-          <View style={styles.differenceRight} wrap={false}>
+          <View style={styles.differenceRight}>
             <PDFText style={styles.whyLabel}>Why Choose GREENSPACEDEV</PDFText>
             <PDFText style={styles.whyTitle}>Choose GREENSPACEDEV if you want more than random plants.</PDFText>
             <PDFText style={styles.whyText}>
@@ -701,7 +701,7 @@ export default function CurrentDocument() {
           </View>
         </View>
 
-        <View style={styles.founderPanel} wrap={false}>
+        <View style={styles.founderPanel}>
           <View style={styles.founderAvatar}>
             <PDFText style={styles.founderAvatarText}>GS</PDFText>
           </View>
@@ -765,7 +765,7 @@ export default function CurrentDocument() {
           <PDFText style={styles.socialTitle}>Social Links</PDFText>
           <View style={styles.socialGrid}>
             {socialLinks.map((social) => (
-              <View key={social.label} style={styles.socialItem} wrap={false}>
+              <View key={social.label} style={styles.socialItem}>
                 <PDFText style={styles.socialLabel}>{social.label}</PDFText>
                 <Link src={social.url} style={styles.socialLink}>
                   {social.url}
@@ -1033,7 +1033,7 @@ const styles = StyleSheet.create({
   coverContact: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 'auto',
+    marginTop: 20,
     borderTopWidth: 1,
     borderTopColor: colors.sage,
     paddingTop: 16,
@@ -1821,7 +1821,7 @@ const styles = StyleSheet.create({
   finalFooter: {
     color: colors.sageLight,
     fontSize: 8,
-    marginTop: 'auto',
+    marginTop: 20,
     borderTopWidth: 1,
     borderTopColor: colors.sage,
     paddingTop: 14,
@@ -1843,9 +1843,11 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   pageNumber: {
-    marginLeft: 'auto',
+    marginLeft: 0,
     color: colors.olive,
     fontSize: 7,
   },
 });
+
+
 
