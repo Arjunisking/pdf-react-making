@@ -1,5 +1,6 @@
+@'
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
-import { InvoiceModernDocument } from "./blocks/pdfx/invoice-modern/invoice-modern";
+import InvoiceModernDocument from "./blocks/pdfx/invoice-modern/invoice-modern";
 
 export default function App() {
   return (
@@ -16,5 +17,4 @@ export default function App() {
     </div>
   );
 }
-
-
+'@ | Set-Content .\src\App.tsx

@@ -1,17 +1,15 @@
-import { PdfxThemeProvider, usePdfxTheme } from "../../../lib/pdfx-theme-context";
-import { KeyValue } from "../../../components/pdfx/key-value/pdfx-key-value";
-import { PageFooter } from "../../../components/pdfx/page-footer/pdfx-page-footer";
-import { PageHeader } from "../../../components/pdfx/page-header/pdfx-page-header";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHeader,
-  TableRow,
-} from "../../../components/pdfx/table/pdfx-table";
-import { Section } from "../../../components/pdfx/section/pdfx-section";
-import { Text } from "../../../components/pdfx/text/pdfx-text";
-import { Document, Page, StyleSheet, View } from "@react-pdf/renderer";
-import type { InvoiceModernData } from "./invoice-modern.types";
+$invoicePath = ".\src\blocks\pdfx\invoice-modern\invoice-modern.tsx"
+$content = Get-Content $invoicePath -Raw
 
+$match = [regex]::Match($content, "(?:export\s+)?function\s+(Invoice\w+)")
+if (-not $match.Success) {
+  throw "No Invoice component function found in invoice-modern.tsx"
+}
 
+$componentName = $match.Groups[1].Value
+
+if ($content -notmatch "export\s+default\s+$componentName") {
+  Add-Content -Path $invoicePath -Value "`r`nexport default $componentName;"
+}
+
+Write-Host "Default export set to $componentName"
