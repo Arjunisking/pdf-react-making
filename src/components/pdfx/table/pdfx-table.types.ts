@@ -75,3 +75,5 @@ export interface TableCellProps {
   variant?: TableVariant;
   _last?: boolean;
 }
+
+

@@ -55,3 +55,5 @@ export function usePdfxTheme(): PdfxTheme {
 export function useSafeMemo<T>(factory: () => T, _deps: DependencyList): T {
   return factory();
 }
+
+
