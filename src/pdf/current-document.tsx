@@ -218,20 +218,7 @@ function Logo({ light = false }: { light?: boolean }) {
   );
 }
 
-function Footer() {
-  return (
-    <View style={styles.footer} fixed>
-      <PDFText style={styles.footerText}>GREENSPACEDEV Company Profile</PDFText>
-      <PDFText style={styles.footerText}>greenspacedev.com</PDFText>
-      <PDFText
-        style={styles.pageNumber}
-        render={({ pageNumber, totalPages }: { pageNumber: number; totalPages: number }) =>
-          `${pageNumber} / ${totalPages}`
-        }
-      />
-    </View>
-  );
-}
+
 
 function PageHeader({ label }: { label: string }) {
   return (
@@ -1861,3 +1848,4 @@ const styles = StyleSheet.create({
     fontSize: 7,
   },
 });
+
