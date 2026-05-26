@@ -1,135 +1,357 @@
 import React from "react";
 import { mkdirSync } from "node:fs";
 import { resolve } from "node:path";
-import { Document, Page, Text, View, StyleSheet, renderToFile } from "@react-pdf/renderer";
+import { Document, Page, Text, renderToFile } from "@react-pdf/renderer";
 
 const e = React.createElement;
 
-const styles = StyleSheet.create({
-  page: {
-    padding: 40,
-    backgroundColor: "#FFFDF7",
-  },
-  cover: {
-    padding: 48,
-    backgroundColor: "#09271B",
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: "bold",
-    color: "#FFFDF7",
-    lineHeight: 38,
-    marginBottom: 18,
-  },
-  brand: {
-    fontSize: 15,
-    fontWeight: "bold",
-    color: "#FFFDF7",
-    marginBottom: 80,
-    letterSpacing: 1.5,
-  },
-  coverText: {
-    fontSize: 12,
-    color: "#EAF2E6",
-    lineHeight: 18,
-    marginBottom: 12,
-  },
-  header: {
-    fontSize: 11,
-    fontWeight: "bold",
-    color: "#123A2A",
-    marginBottom: 8,
-  },
-  pageLabel: {
-    fontSize: 8,
-    color: "#5F7D4B",
-    marginBottom: 20,
-  },
-  heading: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#09271B",
-    lineHeight: 28,
-    marginBottom: 16,
-  },
-  body: {
-    fontSize: 10,
-    color: "#1F2A24",
-    lineHeight: 15,
-    marginBottom: 10,
-  },
-  bullet: {
-    fontSize: 10,
-    color: "#1F2A24",
-    lineHeight: 15,
-    marginBottom: 7,
-  },
-  section: {
-    marginBottom: 16,
-  },
-});
+const pageStyle = {
+  paddingTop: 40,
+  paddingRight: 44,
+  paddingBottom: 40,
+  paddingLeft: 44,
+};
+
+function page(content: string) {
+  return e(
+    Page,
+    { size: "A4", style: pageStyle },
+    e(Text, null, content)
+  );
+}
 
 const document = e(
   Document,
-  { title: "GREENSPACEDEV Company Profile" },
+  {
+    title: "GREENSPACEDEV Company Profile",
+    author: "GREENSPACEDEV",
+    subject: "Company profile for GREENSPACEDEV",
+  },
 
-  e(
-    Page,
-    { size: "A4", style: styles.cover },
-    e(Text, { style: styles.brand }, "GREENSPACEDEV"),
-    e(Text, { style: styles.title }, "Designing Smarter, Healthier, Greener Spaces"),
-    e(Text, { style: styles.coverText }, "Premium green living solutions for homes, balconies, rooftops, offices, cafes, villas, and commercial properties."),
-    e(Text, { style: styles.coverText }, "50+ cities across India"),
-    e(Text, { style: styles.coverText }, "09 core green services"),
-    e(Text, { style: styles.coverText }, "AI-assisted space recommendations"),
-    e(Text, { style: styles.coverText }, "greenspacedev.com | hello@greenspacedev.com | +91 98765 43210")
+  page(
+`GREENSPACEDEV
+COMPANY PROFILE 2026
+
+============================================================
+
+DESIGNING SMARTER, HEALTHIER, GREENER SPACES
+
+Premium green living solutions for homes, balconies, rooftops,
+offices, cafes, villas, and commercial properties.
+
+------------------------------------------------------------
+
+50+   Cities across India
+09    Core green services
+AI    Space recommendations
+
+------------------------------------------------------------
+
+Website: greenspacedev.com
+Email:   hello@greenspacedev.com
+Phone:   +91 98765 43210
+
+============================================================
+
+Eco-tech green living for modern Indian spaces.`
   ),
 
-  e(
-    Page,
-    { size: "A4", style: styles.page },
-    e(Text, { style: styles.header }, "GREENSPACEDEV"),
-    e(Text, { style: styles.pageLabel }, "01 / About"),
-    e(Text, { style: styles.heading }, "An eco-tech green living platform for modern spaces."),
-    e(Text, { style: styles.body }, "GREENSPACEDEV helps people design, plan, and maintain beautiful plant-based spaces for modern homes and commercial environments."),
-    e(Text, { style: styles.body }, "We combine plant expertise, space planning, AI-assisted recommendations, and end-to-end installation support to make greenery practical, premium, and easy to manage."),
-    e(Text, { style: styles.body }, "We do not just sell plants. We help people understand which plants suit their space, where they should be placed, how they should be maintained, and how greenery can improve the look, comfort, air quality, and overall experience of a space."),
-    e(Text, { style: styles.header }, "Mission"),
-    e(Text, { style: styles.body }, "To make green living simple, intelligent, and accessible for modern urban spaces."),
-    e(Text, { style: styles.header }, "Vision"),
-    e(Text, { style: styles.body }, "To become India’s trusted eco-tech platform for premium green spaces, sustainable interiors, rooftop gardens, and plant-based lifestyle solutions.")
+  page(
+`01 / ABOUT GREENSPACEDEV
+
+============================================================
+
+An eco-tech green living platform for modern spaces.
+
+GREENSPACEDEV helps people design, plan, and maintain beautiful
+plant-based spaces for modern homes and commercial environments.
+
+We combine plant expertise, space planning, AI-assisted
+recommendations, and end-to-end installation support to make
+greenery practical, premium, and easy to manage.
+
+We do not just sell plants. We help people understand which plants
+suit their space, where they should be placed, how they should be
+maintained, and how greenery can improve the look, comfort, air
+quality, and overall experience of a space.
+
+------------------------------------------------------------
+
+MISSION
+
+To make green living simple, intelligent, and accessible for modern
+urban spaces.
+
+------------------------------------------------------------
+
+VISION
+
+To become India's trusted eco-tech platform for premium green
+spaces, sustainable interiors, rooftop gardens, and plant-based
+lifestyle solutions.`
   ),
 
-  e(
-    Page,
-    { size: "A4", style: styles.page },
-    e(Text, { style: styles.header }, "GREENSPACEDEV"),
-    e(Text, { style: styles.pageLabel }, "02 / Problem & Solution"),
-    e(Text, { style: styles.heading }, "Urban spaces are crowded, polluted, stressful, and disconnected from nature."),
-    e(Text, { style: styles.bullet }, "• Plants die because they are placed in the wrong location."),
-    e(Text, { style: styles.bullet }, "• People choose plants that do not match their light, room type, or climate."),
-    e(Text, { style: styles.bullet }, "• Indoor air quality remains poor because the space is not planned properly."),
-    e(Text, { style: styles.bullet }, "• Balconies and rooftops remain unused or poorly designed."),
-    e(Text, { style: styles.bullet }, "• Commercial spaces look plain, closed, and uninspiring."),
-    e(Text, { style: styles.header }, "Our Solution"),
-    e(Text, { style: styles.body }, "GREENSPACEDEV designs greenery around the actual space, user lifestyle, sunlight, airflow, maintenance ability, and aesthetic goals.")
+  page(
+`02 / THE PROBLEM WE SOLVE
+
+============================================================
+
+Urban spaces are becoming more crowded, polluted, stressful, and
+disconnected from nature.
+
+Most people want greener spaces, but they do not know which plants
+to choose, where to place them, how to care for them, or how to build
+a setup that survives beyond the first few weeks.
+
+------------------------------------------------------------
+
+KEY PROBLEMS
+
+01. Plants die because they are placed in the wrong location.
+
+02. People choose plants that do not match their light, room type,
+    or climate.
+
+03. Indoor air quality remains poor because the space is not planned
+    properly.
+
+04. Balconies and rooftops remain unused or poorly designed.
+
+05. Commercial spaces look plain, closed, and uninspiring.
+
+06. Clients do not know how to maintain plants after purchase.
+
+07. Greenery is often treated as decoration instead of a planned
+    living system.`
   ),
 
-  e(
-    Page,
-    { size: "A4", style: styles.page },
-    e(Text, { style: styles.header }, "GREENSPACEDEV"),
-    e(Text, { style: styles.pageLabel }, "03 / Services"),
-    e(Text, { style: styles.heading }, "Premium green solutions designed around real spaces."),
-    e(Text, { style: styles.bullet }, "1. Home Plantation Decoration"),
-    e(Text, { style: styles.bullet }, "2. Balcony Garden Setup"),
-    e(Text, { style: styles.bullet }, "3. Rooftop Garden Design"),
-    e(Text, { style: styles.bullet }, "4. Garden Decoration"),
-    e(Text, { style: styles.bullet }, "5. Vertical Gardens"),
-    e(Text, { style: styles.bullet }, "6. Commercial Green Solutions"),
-    e(Text, { style: styles.bullet }, "7. AI Green Scan"),
-    e(Text, { style: styles.bullet }, "8. Space Analysis"),
-    e(Text, { style: styles.bullet }, "9. Maintenance Support")
+  page(
+`03 / OUR SOLUTION
+
+============================================================
+
+Complete green space solutions from consultation to design,
+installation, and maintenance.
+
+GREENSPACEDEV designs greenery around the actual space, user
+lifestyle, sunlight, airflow, maintenance ability, and aesthetic goals.
+
+------------------------------------------------------------
+
+HOW WE WORK
+
+01. We study the space.
+
+02. We understand the client's needs.
+
+03. We recommend the right plants and layout.
+
+04. We design the green setup.
+
+05. We install it professionally.
+
+06. We provide care guidance and maintenance support.
+
+------------------------------------------------------------
+
+AI GREEN SCAN
+
+Green Scan helps users understand what kind of greenery suits their
+space through guided recommendations based on their needs and
+environment.
+
+------------------------------------------------------------
+
+SPACE ANALYSIS
+
+Space Analysis helps users evaluate their room, balcony, rooftop, or
+commercial area and receive personalized green planning guidance.`
+  ),
+
+  page(
+`04 / OUR SERVICES
+
+============================================================
+
+Premium green solutions designed around real spaces.
+
+01. HOME PLANTATION DECORATION
+    Greenery planning for living rooms, bedrooms, kitchens, study
+    areas, and indoor corners.
+
+02. BALCONY GARDEN SETUP
+    Compact balcony setups using low-maintenance plants, smart
+    placement, and space-saving designs.
+
+03. ROOFTOP GARDEN DESIGN
+    Rooftop gardens that improve comfort, reduce heat, and create
+    usable outdoor spaces.
+
+04. GARDEN DECORATION
+    Decorative garden setups for homes, villas, farmhouses,
+    entrances, pathways, and outdoor corners.
+
+05. VERTICAL GARDENS
+    Space-saving green walls for offices, cafes, gyms, receptions,
+    balconies, and premium interiors.`
+  ),
+
+  page(
+`05 / MORE SERVICES
+
+============================================================
+
+06. COMMERCIAL GREEN SOLUTIONS
+    Green solutions for offices, cafes, gyms, restaurants, real
+    estate spaces, and commercial properties.
+
+07. AI GREEN SCAN
+    AI-assisted guidance that helps users understand what kind of
+    greenery suits their space, needs, and environment.
+
+08. SPACE ANALYSIS
+    Planning support for rooms, balconies, rooftops, and commercial
+    areas.
+
+09. MAINTENANCE SUPPORT
+    Plant care guidance, checkups, seasonal suggestions,
+    replacements, and ongoing care plans.
+
+------------------------------------------------------------
+
+BUILT FOR MODERN INDIAN SPACES
+
+GREENSPACEDEV is not a basic plant nursery or decoration service.
+
+It is a green space planning and eco-tech platform built around
+personalization, design quality, and long-term plant survival.`
+  ),
+
+  page(
+`06 / OUR PROCESS
+
+============================================================
+
+A clear five-step path from confusion to a living green space.
+
+01. CONSULTATION
+    We understand the client's space, goals, budget, sunlight
+    conditions, design preference, and maintenance capacity.
+
+02. SPACE STUDY
+    We evaluate light, airflow, usage, greenery opportunities, and
+    visual balance.
+
+03. CUSTOM GREEN PLAN
+    We prepare recommended plants, layout direction, placement
+    ideas, and service suggestions.
+
+04. DELIVERY AND INSTALLATION
+    Our team delivers and installs the selected plants and setup with
+    proper placement, soil, planters, and finishing.
+
+05. CARE AND MAINTENANCE
+    We guide the client on plant care and offer maintenance support
+    to keep the green space healthy.`
+  ),
+
+  page(
+`07 / WHO WE SERVE
+
+============================================================
+
+RESIDENTIAL CLIENTS
+
+- Apartment owners
+- Families
+- Working professionals
+- Students
+- Senior citizens
+- Renters
+- Luxury homeowners
+- Villa owners
+- Balcony and rooftop owners
+- People who want healthier indoor spaces
+- People who want low-maintenance plants
+- People who want premium home styling with greenery
+
+------------------------------------------------------------
+
+COMMERCIAL CLIENTS
+
+- Corporate offices
+- Cafes and restaurants
+- Gyms and fitness centers
+- Hotels and boutique spaces
+- Real estate developers
+- Interior designers
+- Architects
+- Event planners
+- Retail stores
+- Commercial property owners
+- Coworking spaces`
+  ),
+
+  page(
+`08 / VALUES AND DIFFERENCE
+
+============================================================
+
+CORE VALUES
+
+01. Sustainability
+02. Practicality
+03. Personalization
+04. Premium Design
+05. Technology with Nature
+06. Long-Term Care
+
+------------------------------------------------------------
+
+WHAT MAKES US DIFFERENT
+
+- AI-assisted plant and space recommendations
+- Room-specific and lifestyle-based plant planning
+- Rooftop, balcony, indoor, and commercial greenery solutions
+- Premium design approach with practical usability
+- End-to-end service from planning to installation
+- Maintenance and care support after setup
+- Solutions for homes, offices, cafes, gyms, villas, and commercial spaces
+- Focus on air quality, wellness, aesthetics, and sustainability`
+  ),
+
+  page(
+`09 / WORK WITH GREENSPACEDEV
+
+============================================================
+
+Let's build your green space.
+
+GREENSPACEDEV helps people design green spaces that are beautiful,
+practical, and easier to maintain.
+
+We bring together nature, design, and technology to create healthier
+homes, better workplaces, and premium green environments.
+
+------------------------------------------------------------
+
+CONTACT DETAILS
+
+Company:       GREENSPACEDEV
+Website:       greenspacedev.com
+Email:         hello@greenspacedev.com
+Phone:         +91 98765 43210
+Service Areas: 50+ cities across India
+
+Primary Services:
+Home Plantation, Balcony Gardens, Rooftop Gardens, Garden
+Decoration, Vertical Gardens, Commercial Green Solutions, Green
+Scan, Space Analysis, Maintenance Support
+
+============================================================
+
+GREENSPACEDEV
+Designing Smarter, Healthier, Greener Spaces`
   )
 );
 
@@ -139,7 +361,7 @@ async function main() {
 
   mkdirSync(outputDir, { recursive: true });
 
-  console.log("Generating GREENSPACEDEV stable PDF...");
+  console.log("Generating designed GREENSPACEDEV PDF...");
   await renderToFile(document, outputPath);
   console.log(`PDF generated successfully: ${outputPath}`);
 }
